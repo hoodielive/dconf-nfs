@@ -19,5 +19,8 @@
 
 #set -o nounset                                  # Treat unset variables as an error
 
-for homedirs in $@; do 
-  echo "user:db" > user_db
+#for homedirs in $@; do 
+#  echo "user:db" > user_db
+
+for homedir in ./home/nfshome{0..400}/ ; do (cd "$homedir" && echo "user:db" > userdb); done
+for homedir in ./home/nfshome{0..400}/ ; do (cd "$homedir" && cp userdb dconf.profile); done
