@@ -2,7 +2,7 @@
 
 file="user"
 
-mkdir -p ./projecthome/nfs{0..400}
+mkdir -p ./projecthome/nfshome{0..400}
 
 if [ "$?" -eq 0 ]; then 
   echo "Project home environment was created succesfully..."
@@ -19,11 +19,13 @@ echo "Let's see if we can get a simulated user binary file to change.."
 
 sleep 3 
 
-for homedir in "./projecthome/nfshome{0..400}/"; do 
+for homedir in ./projecthome/nfshome{0..400}/ ; do 
   (cd "$homedir" && cp ../../../createEnv/user .); 
+  (cd "$homedir" && mkdir -p .config/dconf); 
 done
 
 if [ "$?" -eq 0 ]; then 
+  echo 
   echo "Copy was successful!!!"
 else
   echo "Copy was NOT successful, please check syntax!"  
