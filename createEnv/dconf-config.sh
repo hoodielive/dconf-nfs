@@ -3,12 +3,21 @@
 projectDir="/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/nfs*/"
 
 #if [ -d "${projectDir}" ]; then
-if [ -d "/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/nfshome*" ]; then
-  echo "Project directories exist..."; 
-else
-  echo "Project directories does NOT exist...";
-  exit 33 
-fi
+#if [ -d "/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/nfshome{0..400}" ]; then
+#  echo "Project directories exist..."; 
+#else
+#  echo "Project directories does NOT exist...";
+#  exit 33 
+#fi
+
+for homedirs in ${projectDir} ; do
+  if [ -d $homedirs ]; then
+    echo "these directories exist"
+  else
+    echo "these directories do NOT exist"
+    exit 33
+  fi
+done 
 
 if [ -w "${projectDir}" ]; then
   echo "It is writeable as well..."
