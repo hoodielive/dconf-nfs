@@ -1,8 +1,9 @@
 #!/bin/bash 
 
-projectDir="/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/*nfs*/"
+projectDir="/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/nfs*/"
 
-if [ -z "${projectDir}" ]; then
+#if [ -d "${projectDir}" ]; then
+if [ -d "/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/nfshome*" ]; then
   echo "Project directories exist..."; 
 else
   echo "Project directories does NOT exist...";
@@ -16,7 +17,7 @@ else
   exit 33
 fi
 
-for homedirs in "${projectDir}" ; do 
+for homedirs in ${projectDir} ; do 
   cd $homedirs && echo "user-db:user" > dconf-temporary-profile 
   env DCONF_PROFILE="${projectDir}/dconf-temporary-profile dconf dump" / 1> $projectDir/.config/dconf/user.txt
 done 
