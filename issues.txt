@@ -1,0 +1,4 @@
+dconf dump looking at XDG_CONFIG - which cannot be modified per session 
+
+cp -vrp $HOME/<nfs> $HOME/
+dconf dump / >$1

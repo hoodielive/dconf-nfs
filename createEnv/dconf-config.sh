@@ -2,15 +2,8 @@
 
 projectDir="/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/nfs*/"
 
-#if [ -d "${projectDir}" ]; then
-#if [ -d "/home/master/Clones/shellscripting/bash/dconf-nfs/createEnv/projecthome/nfshome{0..400}" ]; then
-#  echo "Project directories exist..."; 
-#else
-#  echo "Project directories does NOT exist...";
-#  exit 33 
-#fi
-
-for homedirs in ${projectDir} ; do
+#for homedirs in ${projectDir} ; do
+for homedirs in ${1} ; do
   if [ -d $homedirs ]; then
     echo "these directories exist"
   else
@@ -19,20 +12,20 @@ for homedirs in ${projectDir} ; do
   fi
 done 
 
-if [ -w "${projectDir}" ]; then
+#if [ -w "${projectDir}" ]; then
+if [ -w "${1}" ]; then
   echo "It is writeable as well..."
 else
   echo "The directory is not writeable"
   exit 33
 fi
 
-for homedirs in ${projectDir} ; do 
+for homedirs in ${1} ; do 
   cd $homedirs && echo "user-db:user" > dconf-temporary-profile 
-  env DCONF_PROFILE="${projectDir}/dconf-temporary-profile dconf dump" / 1> $projectDir/.config/dconf/user.txt
+  env DCONF_PROFILE="dconf-temporary-profile" dconf dump /home/osanyin/Clones/dconf-nfs/createEnv/${1}/ 1> user.txt
 done 
 
-echo $?
-
+# check to see if that operation was successful 
 if [ "$?" -eq 0 ]; then 
   echo "Succeeded..."
 else
