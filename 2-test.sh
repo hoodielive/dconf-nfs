@@ -27,5 +27,12 @@ done
 # 3. if user.txt is not found, is user file found? if not, skip, else become user and perform operation 
 
 # 4. test if operation was successful, if it was rm dconf-temp-profile and log it to a file in /var/tmp
-
+for opusers in $(cat /var/tmp/operation_on_users.txt); do 
+  sudo -u $opusers bash <<EOF 
+    cd /home/$opusers/.config/dconf 
+    echo "user-db:test" > dconf-temporary-profile
+    env DCONF_PROFILE="dconf-temporary-profile" dconf dump / 1> user.txt
+    rm dconf-temporary-profile 
+EOF 
+done
 # 5. If successful remove of dconf-temporary-profile - cd to next users dir 
