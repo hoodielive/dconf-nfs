@@ -26,8 +26,8 @@ for users in $(cat /var/tmp/assign/potential_operation_users.txt); do
 done
 
 for opusers in $(cat /var/tmp/assign/operate_on_these_users.txt); do
-    runuser $opusers --session-command="echo user-db:user > /home/$opusers/.config/dconf/dconf-contemporary-profile"
-    runuser $opusers --session-command="env DCONF_PROFILE=/home/$opusers/.config/dconf/dconf-contemporary-profile \
+    runuser $opusers --session-command="echo user-db:user > /home/$opusers/.config/dconf/dconf-temporary-profile"
+    runuser $opusers --session-command="env DCONF_PROFILE=/home/$opusers/.config/dconf/dconf-temporary-profile \
         dconf dump / >/home/$opusers/.config/dconf/user.txt" 
     runuser $opusers --session-command="rm -rf /home/$opusers/.config/dconf/dconf-temporary-profile"
     cd /home
