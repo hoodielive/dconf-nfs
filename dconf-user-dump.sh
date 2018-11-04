@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# Change the way users store dconf settings - from binary to keyfile on NFS Mounted home directories. 
 set -x
 
 for users in $(cat /var/tmp/assign/users); do
